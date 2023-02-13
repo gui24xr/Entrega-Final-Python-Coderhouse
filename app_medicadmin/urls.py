@@ -19,5 +19,6 @@ from app_medicadmin.views import*
 
 urlpatterns = [
     path('login/', vista_login,name="login"),
-    path('padre/', vista_prueba_plantilla_padre,name="padre")
+    path('padre/', vista_prueba_plantilla_padre,name="padre"),
+    path('nuevo_turno/', vista_nuevo_turno,name="nuevo_turno"),
 ]
