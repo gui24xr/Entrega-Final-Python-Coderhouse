@@ -1,0 +1,24 @@
+{% extends "app_medicadmin/padre.html" %} {% load static %} 
+
+{% block content %}
+ 
+
+
+<img src= "{{ request.user.perfil_usuario.foto_perfil.url }}" width="40" height="40" >
+
+
+
+<form method="POST" enctype="multipart/form-data">   {% csrf_token %}
+ 
+<label for="name">Enviar mensaje</label>
+
+<input type="text" id="name" name="mensaje_enviado" required
+       minlength="0" maxlength="100" size="100">
+     
+    <input type="submit" value="Enviar">
+</form>
+
+Nota: Su mensaje aparecera en el chat institucional luego de ser enviado.
+
+
+ {% endblock %}

@@ -1,0 +1,95 @@
+{% extends "app_medicadmin/padre.html" %} {% load static %} 
+
+{% block content %}
+ 
+
+<form action=""  method="get" > 
+    
+    
+    <input type="radio" id="apellido paciente" name="CRITERIO_BUSQUEDA" value="apellido_paciente">
+    <label for="nombre">Apellido Paciente</label>
+    <input type="radio" id="especialidad" name="CRITERIO_BUSQUEDA" value="especialidad">
+    <label for="apellido">Especialidad</label>
+    <input type="radio" id="DNI" name="CRITERIO_BUSQUEDA" value="es">
+    <label for="dni">DNI</label>
+    <input type="radio" id="ESPECIALIDAD" name="CRITERIO_BUSQUEDA" value="ESPECIALIDAD">
+    <label for="dni">ESPECIALIDAD</label>
+
+ 
+    
+    <br><div class="input-group">
+        <input type="search" name="MI_BUSQUEDA" class="form-control bg-light border-0 small" placeholder="Buscar..."
+            aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <input type="submit" value = "BUSCAR" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>
+        </div>
+    </div>
+
+    
+
+</form><br>
+
+
+
+
+    <!-- DataTales Example -->
+   <div class="card shadow mb-4">
+    
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr style="text-align: right;">
+
+                        <td>NUMERO</td>
+                        <td>ESPECIALIDAD</td>
+                        <td>MEDICO</td>
+                        <td>PACIENTE</td>
+                        <td>FECHA</td>
+                        <td>HORARIO</td>
+                    <tr>
+
+                        {% for turno in object_list %}
+
+                            <tr><td> {{turno.id}} </td>
+                                <td> {{turno.medico.especialidad}} </td>
+                                 <td>{{turno.medico.apellido}} {{turno.medico.nombre}} </td>
+                                 <td> {{turno.paciente.apellido}} {{turno.paciente.nombre}}</td>
+                                 <td> {{turno.fecha}} </td>
+                                 <td> {{turno.horario}}</td>
+                                 <td><a href="{% url 'editar_turno'  turno.id %}" >Editar </a></td>  
+                                 <td><a href="{% url 'eliminar_turno'  turno.id %}" >Eliminar </a></td>  
+                            </tr>
+
+                        {% endfor %}
+                        
+                                              
+                            
+             
+
+                    
+                  </tbody>
+                
+                
+           
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+
+
+
+  
+    
+
+ {% endblock %}

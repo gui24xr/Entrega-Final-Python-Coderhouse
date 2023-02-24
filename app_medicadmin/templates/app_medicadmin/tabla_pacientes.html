@@ -1,0 +1,87 @@
+{% extends "app_medicadmin/padre.html" %} {% load static %} 
+
+{% block content %}
+ 
+<!-- Topbar Search -->
+
+
+
+<form action=""  method="get" > 
+    
+    <input type="radio" id="nombre" name="CRITERIO_BUSQUEDA" value="NOMBRE">
+    <label for="nombre">Nombre</label>
+    <input type="radio" id="apellido" name="CRITERIO_BUSQUEDA" value="APELLIDO">
+    <label for="apellido">Apellido</label>
+    <input type="radio" id="DNI" name="CRITERIO_BUSQUEDA" value="DNI">
+    <label for="dni">DNI</label>
+    <input type="radio" id="obra_social" name="CRITERIO_BUSQUEDA" value="OBRA SOCIAL">
+    <label for="obra social">Obra social</label>
+    <input type="radio" id="localidad" name="CRITERIO_BUSQUEDA" value="LOCALIDAD">
+    <label for="localidad">Localidad</label>
+   
+    
+    <br><div class="input-group">
+        <input type="search" name="MI_BUSQUEDA" class="form-control bg-light border-0 small" placeholder="Buscar..."
+            aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <input type="submit" value = "BUSCAR" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>
+        </div>
+    </div>
+
+    
+
+</form><br>
+
+
+    <!-- DataTales Example -->
+   <div class="card shadow mb-4">
+    
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr style="text-align: right;">
+
+                        <form action="" method="POST"> {% csrf_token %}
+                        
+                            {% include tabla_datos %}
+                        
+                            {% if boton_volver == True %}
+
+                                 <br><p align="right">
+                                <input type="submit" value = "VOLVER" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>
+                                </p>
+    
+
+                            {% endif %}
+
+                           
+                            
+                        </form>
+
+                    </tr>
+                  </tbody>
+                </table></table>
+                
+           
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+
+
+
+  
+    
+
+ {% endblock %}

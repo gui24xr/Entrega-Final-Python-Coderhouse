@@ -1,0 +1,14 @@
+{% extends "app_medicadmin/padre.html" %} {% load static %} 
+
+{% block content %}
+ 
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+ 
+    
+    {{ form.as_p }}
+     
+    <input type="submit" value="Aceptar">
+</form>
+
+
+ {% endblock %}

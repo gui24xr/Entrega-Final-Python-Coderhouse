@@ -1,0 +1,19 @@
+{% extends "app_medicadmin/padre.html" %} {% load static %} 
+
+{% block content %}
+
+
+
+
+<form method="post">{% csrf_token %}
+    
+    {{ form }}
+    <input type="submit" value="Confirmar" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+    class="fas fa-download fa-sm text-white-50">
+</form>
+
+
+ {% endblock %}
+
+
+

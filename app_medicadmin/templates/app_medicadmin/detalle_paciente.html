@@ -1,0 +1,141 @@
+{% extends "app_medicadmin/padre.html" %} {% load static %} 
+
+{% block content %}
+ 
+
+
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{paciente.apellido}} {{paciente.nombre}}</h1>
+    </div>
+
+    <div class="row">
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                DATOS PERSONALES</div>
+                                DNI:{{paciente.dni}}
+                        </div>
+                        <div class="col-auto">
+                            <br><br><br><br> <br> <a href="{% url 'editar_paciente'  paciente.id %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class=" fa-sm text-white-10"></i>EDITAR</a>
+                              
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Annual) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                DATOS OBRA SOCIAL</div>
+                            
+                                {% if paciente.tarjeta_obra_social == "" %}
+                                    SIN DATOS
+                                    
+                                {% else %}
+                                    {{paciente.tarjeta_obra_social.obra_social}}<br>Num: {{paciente.tarjeta_obra_social.num_afiliado}}
+                                    {{paciente.tarjeta_obra_social.id }}
+
+                                    <br><br><br><br><br> <a href="{% url 'editar_obra_social'  paciente.tarjeta_obra_social.id %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                        class=" fa-sm text-white-10"></i>EDITAR </a>
+                        
+                                {% endif %}
+                            
+                        </div>
+                        <div class="col-auto">
+
+                            
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- Tasks Card Example -->
+
+
+      
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                 
+                     
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">DATOS DE CONTACTO
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                           
+                                
+                                {% if paciente.tarjeta_contacto == "" %}
+                                    SIN DATOS
+                                {% else %}
+                                    Domicilio: {{ paciente.tarjeta_contacto.domicilio_calle }} {{ paciente.tarjeta_contacto.domicilio_numero}}<br>
+                                                Piso {{ paciente.tarjeta_contacto.domicilio_piso }}, Depto {{ paciente.tarjeta_contacto.domicilio_depto }}<br>
+                                                Localidad: {{ paciente.tarjeta_contacto.localidad }}, Provincia: {{ paciente.tarjeta_contacto.provincia }}<br>
+
+                                    Telefonos: {{ paciente.tarjeta_contacto.numero_telefonico_1 }}// {{ paciente.tarjeta_contacto.numero_telefonico_1 }}<br>
+                                    email: {{ paciente.tarjeta_contacto.email }}
+                                    <br><br><br><br><br> <a href="{% url 'editar_tarjeta_contacto_paciente'  paciente.tarjeta_contacto.id %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                        class=" fa-sm text-white-10"></i>EDITAR</a>
+                               
+                                 {% endif %}
+
+                    
+                          
+                
+                                </div>
+                            
+                            
+                            </div>
+                        </div>
+                      
+                    </div>
+                </div>
+              
+                    <br><br><a href="{% url 'eliminar_paciente'  paciente.id %}"  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        class=" fa-sm text-white-10"></i>ELIMINAR PACIENTE</a>
+            </div>
+            
+        </div>
+
+        
+
+    <div class="row">
+
+
+
+        
+           
+        
+              
+                </div>
+                
+           
+                 
+               
+           
+                   
+
+ {% endblock %}
