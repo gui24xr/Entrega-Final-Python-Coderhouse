@@ -216,7 +216,7 @@ class editar_perfil(LoginRequiredMixin,UpdateView):
 
     model = perfil_usuario
     template_name = 'app_sesiones/edicion_perfil.html'
-    success_url = reverse_lazy('lista_turnos')#"editar_paciente"
+    success_url = reverse_lazy('novedades_principal')#"editar_paciente"
     #fields = ['apellido','nombre','dni','categoria','foto_perfil']
     form_class = form_edicion_perfil
 
@@ -260,6 +260,7 @@ class nuevo_mensaje_institucional(LoginRequiredMixin, CreateView):
 
         return super().form_valid(form)
     
+
 @login_required(login_url='login')  
 def nuevo_sms(request):
 
