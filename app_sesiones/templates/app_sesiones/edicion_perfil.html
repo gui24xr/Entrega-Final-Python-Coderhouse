@@ -43,23 +43,60 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">EDITAR PERFIL</h1>
-                                    </div>
+                                        <h2 class="text-xl font-weight-bold text-primary text-uppercase mb-1">EDITAR PERFIL</h2>
+                                        <h4 class="h3 text-gray-900 mb-4"> {{ request.user }}</h4><br>
+                                        <h5 class="text-mb font-weight-bold text-primary text-uppercase mb-1"> {{ request.user.perfil_usuario.categoria }}</h5>
 
-                                    <img class="img-profile rounded-circle"
-                                    src= "{{request.user.perfil_usuario.foto_perfil.url}}"><br><br>
-                                    
-                                    <form method="post" >{% csrf_token %}
-    
-                                        {{ form.as_p }}
-                                        <input type="submit" value="Confirmar" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                        class="fas fa-download fa-sm text-white-50">
-                                    
-                                    </form>
+                                        Apellido y nombre: {{ request.user.perfil_usuario.apellido }} {{ request.user.perfil_usuario.nombre }}<br>
+                                        DNI: {{request.user.perfil_usuario.dni }} 
+                                        
+                                        </div><br>
 
-                                    
+                                 
+                                            <form  action = "" method="POST" enctype="multipart/form-data" >
+                                            
+                                            {% csrf_token %}
+                                            
+                                            <center>
+                                                
+                                            <img class="img-profile rounded-circle" width="200" height="200" src= "{{ request.user.perfil_usuario.foto_perfil.url }}" > <br>
+                                            <br><input  type="file"  id= "subir_archivo"  name="archivo_imagen" accept="image/jpeg, image/png" > <br>
+                                            
+                                                
+                                            <br>
+                                            <label for="name">Apellido &#160</label>
+                                            <input type="text" id="apellido" name="apellido"
+                                                   minlength="0" maxlength="25" size="24" pattern="[A-Za-z]{4,20}" value= "{{ request.user.perfil_usuario.apellido }}">
 
-                                    {{ mensaje }}
+                                            <label for="name">Nombre &#160</label>
+                                            <input type="text" id="name" name="nombre" 
+                                                minlength="0" maxlength="25" size="24" pattern="[A-Za-z]{4,20}" value= "{{ request.user.perfil_usuario.nombre }}">
+
+                                            <br><label  for="name">DNI numero</label>
+                                            <input  type="text" id="dni" name="dni" 
+                                                minlength="0" maxlength="8" size="22" pattern="[0-9]{7,8}" value= "{{ request.user.perfil_usuario.dni }}">
+
+                                        
+                                            
+                                            <br><br>
+                                            <input type="submit" value="Confirmar" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">  
+                                            </left>
+
+                                            
+                                        </center> <br>
+
+                                                                        
+                                            </form>
+                                            
+                                            <br><br><center><a href="{% url 'novedades_principal' %}" >Volver a la pagina principal</a></center>
+                                            
+                                           
+
+                                     
+                            
+
+
+
                          
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

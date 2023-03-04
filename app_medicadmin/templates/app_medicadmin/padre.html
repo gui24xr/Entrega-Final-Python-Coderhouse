@@ -377,11 +377,13 @@
                                 aria-labelledby="userDropdown">
 
                                
-                                <a class="dropdown-item" href="{% url 'edicion_perfil' request.user.perfil_usuario.id  %}">
+                                <a class="dropdown-item" href="{% url 'edicion_perfil'  %}">
                                    
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                   Perfil
+                                   
+                                   Editar perfil
                                 </a>
+                                
                                 <a class="dropdown-item" href="{% url 'edicion_seguridad'  %}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                    Seguridad

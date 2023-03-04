@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView, LogoutView
 #from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
@@ -195,6 +195,7 @@ def editar_seguridad (request):
             usuario.email =formulario.cleaned_data.get("email")
             usuario.password1 =formulario.cleaned_data.get("password1")
             usuario. password =formulario.cleaned_data.get("password2")
+
             
             usuario.save()
 
@@ -210,7 +211,7 @@ def editar_seguridad (request):
 
 
 
-class editar_perfil(LoginRequiredMixin,UpdateView):
+class _anulada_editar_perfil(LoginRequiredMixin,UpdateView):
 
     login_url = reverse_lazy('login')
 
@@ -225,7 +226,43 @@ class editar_perfil(LoginRequiredMixin,UpdateView):
         #context['titulo_seccion'] = "Editar Perfil"
         return context    
     
+
+#NUEVOOO
+def editar_perfil(request):
+
+    # Me paro en la instancia a editar.
+    perfil_a_editar = perfil_usuario.objects.get(user = request.user)
+
+    if request.method == 'POST':
+
+        print("FILES: ", request.FILES)
+       
+        respuesta_servidor = request.POST
+        respuesta_servidor_imagen = request.FILES
+        print("Respuesta POST: ", respuesta_servidor)
+        print("Respuesta IMAGEN: ", respuesta_servidor_imagen)
+        
+        perfil_a_editar.nombre = respuesta_servidor.get('nombre')
+        perfil_a_editar.apellido = respuesta_servidor.get('apellido')
+        perfil_a_editar.dni = respuesta_servidor.get('dni')
+        
+        if respuesta_servidor_imagen != {}:
+         perfil_a_editar.foto_perfil = respuesta_servidor_imagen.get('archivo_imagen')
+
+        perfil_a_editar.save()
+
+        return render(request, 'app_sesiones/edicion_perfil.html' )
+        
+        
+    return render(request, 'app_sesiones/edicion_perfil.html' )
     
+    
+    
+
+
+   
+
+
 
 def sitio_en_construccion(request):
 
