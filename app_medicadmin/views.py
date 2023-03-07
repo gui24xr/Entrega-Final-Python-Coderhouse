@@ -1,4 +1,4 @@
-from django.shortcuts import render 
+from django.shortcuts import render, redirect 
 from django.template import Template
 from django.views.generic import ListView,DetailView
 from django.views.generic.edit import CreateView,DeleteView,UpdateView
@@ -463,9 +463,32 @@ def aviso_exito(request):
 def escribir_novedad(request):
 
   if request.method == 'POST':
+       
+       mi_formulario = form_novedad(request.POST,request.FILES)
+       
+       if mi_formulario.is_valid():
+           
+            informacion_ingresada = mi_formulario.cleaned_data
+           
+           # Creo una instancia de novedad.
+            nuevo_post = post_novedad()
+            nuevo_post.titulo = informacion_ingresada['titulo']
+            nuevo_post.contenido = informacion_ingresada['contenido']
+            nuevo_post.imagen = informacion_ingresada['imagen']
+            nuevo_post.autor = request.user
+            nuevo_post.save()
+
+
+            return redirect('novedades_principal')
+
+  else:
       
-       contexto = { 'titulo':"Novedades"}
-  return render(request,'app_medicadmin/nuevo_aviso_llegada.html' ,contexto)
+     mi_formulario = form_novedad()
+     contexto = { 'titulo_seccion':"Crear Novedades",
+                  'form': mi_formulario}
+    
+     return render(request,'app_medicadmin/crear_novedad.html' ,contexto)
+
 
 
 
@@ -483,8 +506,35 @@ def novedad_principales(request):
     return render(request,'app_medicadmin/novedades_principal.html' ,contexto)
 
 
-def a_cerca_de_mi(request):
 
-    return render(request,'app_sesiones/acerca.html')
+class eliminar_post(LoginRequiredMixin,DeleteView):
+
+        
+    model = post_novedad
+    template_name = 'app_medicadmin/eliminar_post.html'
+    success_url = reverse_lazy('novedades_principal')
+
+    def get_context_data(self,*args, **kwargs):
+        context = super(eliminar_post, self).get_context_data(*args,**kwargs)
+        context['titulo_seccion'] = "Eliminar Post"
+        return context    
+
+
+class editar_post(LoginRequiredMixin,UpdateView):
+
+ 
+
+    model = post_novedad
+    template_name = 'app_medicadmin/editar_post.html'
+    success_url = reverse_lazy('novedades_principal')
+    fields = ['titulo','contenido','imagen']
+
+    def get_context_data(self,*args, **kwargs):
+        context = super(editar_post, self).get_context_data(*args,**kwargs)
+        context['titulo_seccion'] = "Editar Post"
+        return context    
+
+
+
 
 

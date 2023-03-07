@@ -49,6 +49,20 @@ class form_contacto_medico(forms.ModelForm):
         labels = {'domicilio_calle':"Calle",'domicilio_numero':"Numero",'domicilio_piso':"Piso",'domicilio_depto':"Depto",
                   'numero_telefonico_1':"Telefono 1",'numero_telefonico_2':"Telefono 2",'email':"E mail"}
 
+
+
+class form_novedad(forms.ModelForm):
+
+    
+    
+    class Meta:
+
+        model = post_novedad
+
+        fields = ['titulo','contenido','imagen']
+        
+
+      
         
 
 
@@ -57,4 +71,4 @@ class form_contacto_medico(forms.ModelForm):
 
 
 
-
+ 

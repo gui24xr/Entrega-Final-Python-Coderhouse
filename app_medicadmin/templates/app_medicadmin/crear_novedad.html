@@ -1,7 +1,10 @@
 {% extends "app_medicadmin/padre.html" %} {% load static %} 
 
 {% block content %}
- 
+
+
+Creador: {{request.user.perfil_usuario.apellido }}  {{request.user.perfil_usuario.nombre }}  
+
 <form method="POST" enctype="multipart/form-data">
  
     <!-- Security token -->
@@ -12,6 +15,10 @@
      
     <input type="submit" value="Aceptar">
 </form>
+
+
+
+
 
 
  {% endblock %}

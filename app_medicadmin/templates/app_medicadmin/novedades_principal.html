@@ -2,6 +2,8 @@
 
 {% block content %}
 
+
+
 {% for publicacion in posts %}
 
 <div class="card shadow mb-4">
@@ -14,8 +16,8 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                 <div class="dropdown-header"></div>
-                <a class="dropdown-item" href="#">Modificar</a>
-                <a class="dropdown-item" href="#">Eliminar</a>
+                <a class="dropdown-item" href="{% url 'editar_post' publicacion.id %}">Editar</a>
+                <a class="dropdown-item" href="{% url 'eliminar_post' publicacion.id %}">Eliminar</a>
          
             </div>
         </div>

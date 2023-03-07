@@ -60,9 +60,6 @@ urlpatterns = [
     
     # NOVEDADES
    path('novedades/', novedad_principales,name="novedades_principal"),
-   path('escribir_novedad/', escribir_novedad,name="crear_novedad"),
-   path('eliminar_post/<int:pk>', eliminar_post.as_view() ,name="eliminar_post"),
-   path('editar_post/<int:pk>', editar_post.as_view() ,name="editar_post")
 
 
 
