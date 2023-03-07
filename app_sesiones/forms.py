@@ -46,18 +46,19 @@ class form_inicio_sesion(AuthenticationForm):
     
 
 
-class UserEditForm(forms.ModelForm):
+class UserEditForm(UserCreationForm):
     
     #nombre = forms.CharField()
     #apellido = forms.CharField()
-    email = forms.EmailField(label='Modificar Email')
+    #email = forms.EmailField(label='Modificar Email')
     password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
     password2 = forms.CharField(label="Repetir Contraseña", widget=forms.PasswordInput)
     
     class Meta:
         model = User
         #fields = ('nombre','apellido','email', 'password1', 'password2')
-        fields = ('email', 'password1', 'password2')
+        fields = ['password1', 'password2']
+
 
 
 class form_edicion_perfil(forms.ModelForm):

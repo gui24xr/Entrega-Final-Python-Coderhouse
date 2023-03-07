@@ -28,6 +28,14 @@
 
 <body class="bg-gradient-primary">
 
+
+    
+
+
+
+
+
+
     <div class="container">
 
         <!-- Outer Row -->
@@ -48,6 +56,7 @@
                                         <h5 class="text-mb font-weight-bold text-primary text-uppercase mb-1"> {{ request.user.perfil_usuario.categoria }}</h5>
 
                                         Apellido y nombre: {{ request.user.perfil_usuario.apellido }} {{ request.user.perfil_usuario.nombre }}<br>
+                                        Email: {{ request.user.email }}<br>
                                         DNI: {{request.user.perfil_usuario.dni }} 
                                         
                                         </div><br>
@@ -76,6 +85,11 @@
                                             <input  type="text" id="dni" name="dni" 
                                                 minlength="0" maxlength="8" size="22" pattern="[0-9]{7,8}" value= "{{ request.user.perfil_usuario.dni }}">
 
+                                            <label for="name"> Email &#160</label>
+                                            <input type="email" id="email" name="email" 
+                                                minlength="0" maxlength="25" size="25"  value= "{{ request.user.email }}">
+
+
                                         
                                             
                                             <br><br>
@@ -83,16 +97,14 @@
                                             </left>
 
                                             
-                                        </center> <br>
+                                        </center> 
 
                                                                         
                                             </form>
                                             
                                             <br><br><center><a href="{% url 'novedades_principal' %}" >Volver a la pagina principal</a></center>
-                                            
-                                           
 
-                                     
+     
                             
 
 

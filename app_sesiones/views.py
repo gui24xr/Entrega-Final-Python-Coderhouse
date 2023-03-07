@@ -183,34 +183,47 @@ def registro_usuario(request):
 def editar_seguridad (request):
 
     usuario = request.user
+  
 
     if request.method == 'POST':
-
-        formulario = UserEditForm(request.POST)
         
-        if formulario.is_valid:
+        mi_formulario = UserEditForm(request.POST)
 
-         
+        if mi_formulario.is_valid():
             
-            usuario.email =formulario.cleaned_data.get("email")
-            usuario.password1 =formulario.cleaned_data.get("password1")
-            usuario. password =formulario.cleaned_data.get("password2")
+            informacion_ingresada = mi_formulario.cleaned_data
 
-            
+            usuario.password1 = informacion_ingresada['password1']
+            usuario.password2 = informacion_ingresada['password2']
             usuario.save()
 
-        entorno = {'mensaje':"Usuario Editado Con Exito"}
-        return render(request, 'app_sesiones/hijo.html',entorno)
-    
-    else:
+            entorno = {'mensaje':"La contraseña fue editada con exito."}
+            return render(request,'app_sesiones/edicion_seguridad.html',entorno)
         
-        formulario = UserEditForm
-        entorno = { 'form': formulario }
-        return render(request, 'app_sesiones/edicion_seguridad.html',entorno)
+    else:
+
+        mi_formulario = UserEditForm()
+        entorno = {'formulario':mi_formulario}
+
+        return render(request,'app_sesiones/edicion_seguridad.html',entorno)
+
+
+    
+    
+  
+
+        mi_formulario = UserEditForm(initial={ 'email' : usuario.email})
+
+        entorno = { 'formulario' : mi_formulario}
+
+        return render(request,'app_sesiones/edicion_seguridad.html',entorno)
 
 
 
 
+
+
+# FUERA DE SERVICIO 5/3/22
 class _anulada_editar_perfil(LoginRequiredMixin,UpdateView):
 
     login_url = reverse_lazy('login')
@@ -227,7 +240,7 @@ class _anulada_editar_perfil(LoginRequiredMixin,UpdateView):
         return context    
     
 
-#NUEVOOO
+
 def editar_perfil(request):
 
     # Me paro en la instancia a editar.
@@ -239,12 +252,14 @@ def editar_perfil(request):
        
         respuesta_servidor = request.POST
         respuesta_servidor_imagen = request.FILES
-        print("Respuesta POST: ", respuesta_servidor)
-        print("Respuesta IMAGEN: ", respuesta_servidor_imagen)
+        #print("Respuesta POST: ", respuesta_servidor)
+        #print("Respuesta IMAGEN: ", respuesta_servidor_imagen)
         
         perfil_a_editar.nombre = respuesta_servidor.get('nombre')
         perfil_a_editar.apellido = respuesta_servidor.get('apellido')
         perfil_a_editar.dni = respuesta_servidor.get('dni')
+        perfil_a_editar.user.email = respuesta_servidor.get('email')
+
         
         if respuesta_servidor_imagen != {}:
          perfil_a_editar.foto_perfil = respuesta_servidor_imagen.get('archivo_imagen')

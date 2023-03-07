@@ -43,22 +43,22 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">CAMBIAR EMAIL Y/O CONTRASEÑA </h1>
+                                        <h1 class="h4 text-gray-900 mb-4">CAMBIAR CONTRASEÑA </h1>
                                     </div>
 
                                     <form method="post" >{% csrf_token %}
-    
-                                        {{ form.as_table }}
 
-                         
- 
-                                        <input type="submit" value="Confirmar" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                        class="fas fa-download fa-sm text-white-50">
-                                    
-                                    
+                                        
+                                        <table>{{ formulario.as_p }}</table>
+
+                                        <input type="submit", value = "Confirmar">
+                                        
+    
                                     </form>
+
+                                    {{mensaje}}
                                     
-                                    <a href="{% url 'novedades_principal'  %}" >Cancelar</a>    
+                                    <br><br><center><a href="{% url 'novedades_principal' %}" >Volver a la pagina principal</a></center>   
 
 
 

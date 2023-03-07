@@ -25,7 +25,9 @@
     <div class="card-body">
         {{ publicacion.contenido}} <br><br>
 
+        {% if publicacion.imagen.url != null  %}
         <img src= "{{ publicacion.imagen.url }}" width="300" height="300" >
+        {% endif %}
         <br>
         <h6 class="m-0 font-weight-bold text-primary">{{publicacion.actualizado}}
     </div>
