@@ -189,21 +189,42 @@ def editar_seguridad (request):
         
         mi_formulario = UserEditForm(request.POST)
 
+        
         if mi_formulario.is_valid():
+
+            print("Paso1")
             
+
             informacion_ingresada = mi_formulario.cleaned_data
 
             usuario.password1 = informacion_ingresada['password1']
             usuario.password2 = informacion_ingresada['password2']
+            
+            usuario.set_password(informacion_ingresada['password1'])
+            
             usuario.save()
 
-            entorno = {'mensaje':"La contraseña fue editada con exito."}
+            entorno = {'cambio_exito': True,
+                       'mostrar_botones_reintento' : False}
+            
+            print("Paso2")
+            return render(request,'app_sesiones/edicion_seguridad.html',entorno)
+        
+        else:
+
+            print("Formulario no valido")
+            entorno = {'mensaje':"Las contraseñas no coinciden. Desea reintentar ??",
+                       'mostrar_botones_reintento' : True}
+            
             return render(request,'app_sesiones/edicion_seguridad.html',entorno)
         
     else:
 
         mi_formulario = UserEditForm()
-        entorno = {'formulario':mi_formulario}
+        entorno = {'formulario':mi_formulario,
+                   'mostrar_botones_reintento' : False}
+
+   
 
         return render(request,'app_sesiones/edicion_seguridad.html',entorno)
 

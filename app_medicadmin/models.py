@@ -89,7 +89,7 @@ class turno(models.Model):
 #Avisos de llegada generados por secretaria a medicos de llegada de pacientes.
 class aviso_llegada(models.Model):
 
-    paciente = models.OneToOneField(paciente, null=True,blank=True,on_delete=models.CASCADE)
+    paciente = models.ForeignKey(paciente, null=True,blank=True,on_delete=models.CASCADE)
     fecha = models.DateField(verbose_name="Fecha Anunciado",auto_now_add=True)
     horario = models.TimeField(verbose_name="Horario Anunciado", auto_now_add=True)
 

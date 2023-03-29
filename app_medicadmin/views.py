@@ -106,7 +106,8 @@ class nuevo_paciente(LoginRequiredMixin,CreateView):
     
     model = paciente
     template_name = 'app_medicadmin/nuevo_paciente.html'
-    fields = ["nombre","apellido","dni"]
+    #fields = ["nombre","apellido","dni"]
+    form_class = form_nuevo_paciente
     success_url = reverse_lazy('lista_pacientes')
     
     
@@ -523,7 +524,6 @@ class eliminar_post(LoginRequiredMixin,DeleteView):
 class editar_post(LoginRequiredMixin,UpdateView):
 
  
-
     model = post_novedad
     template_name = 'app_medicadmin/editar_post.html'
     success_url = reverse_lazy('novedades_principal')

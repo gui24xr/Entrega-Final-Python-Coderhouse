@@ -62,7 +62,30 @@ class form_novedad(forms.ModelForm):
         fields = ['titulo','contenido','imagen']
         
 
-      
+
+def dni_valido(valor_ingresado):
+
+    if len(valor_ingresado)!= 8  :
+        return valor_ingresado
+        
+    else:
+        raise forms.ValidationError("El DNI debe tener entre 7 y 8 caracteres")
+        
+
+
+
+class form_nuevo_paciente(forms.ModelForm):
+
+    
+    dni = forms.CharField(required=True,validators=[dni_valido])
+    #dni = forms.IntegerField(required=True, min_value=1000000, max_value=99999999)
+
+    
+    class Meta:
+
+        model = paciente
+        fields = '__all__'
+
         
 
 

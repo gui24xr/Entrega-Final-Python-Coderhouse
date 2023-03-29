@@ -46,17 +46,42 @@
                                         <h1 class="h4 text-gray-900 mb-4">CAMBIAR CONTRASEÑA </h1>
                                     </div>
 
+                                    
+                                    
+                                    
+                                    {% if mostrar_botones_reintento == False  %}
                                     <form method="post" >{% csrf_token %}
 
                                         
                                         <table>{{ formulario.as_p }}</table>
 
                                         <input type="submit", value = "Confirmar">
-                                        
+
+                                     
     
                                     </form>
+                                    
+                                    {% endif %}
 
-                                    {{mensaje}}
+                                    {% if cambio_exito == True  %}
+                                    
+                                     Su contraseña ah sido cambiada con exito. Vuelva a iniciar sesion para validar los cambios.
+                                     
+    
+                                  
+                                    {% endif %}
+
+
+
+
+
+                                    {% if mostrar_botones_reintento == True %}
+                                    Las contraseñas no coinciden o no son validas !
+                                    <br><br><center><a href="{% url 'novedades_principal' %}" >Reintentar</a></center>
+                                    {% endif %}
+                                    
+
+                                    
                                     
                                     <br><br><center><a href="{% url 'novedades_principal' %}" >Volver a la pagina principal</a></center>   
 
